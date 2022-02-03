@@ -3,7 +3,7 @@
 A demonstration of JavaScript Date and locale handling.
 
 - detects your time zone (currently assumes US for "home")
-- computes and displays corresponding time in South Korea
+- computes and displays corresponding time in the host country
 
 ## Installation
 
