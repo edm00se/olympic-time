@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>🕐 Olympic Time!</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -9,17 +9,17 @@
       href="https://fonts.googleapis.com/css?family=Inconsolata"
       rel="stylesheet"
     />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <meta name="theme-color" content="red">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Olympic Time">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="theme-color" content="red" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Olympic Time" />
     <style>
       body {
         text-align: center;
       }
 
       .time {
-        font-family: 'Inconsolata', sans-serif;
+        font-family: "Inconsolata", sans-serif;
         color: green;
         font-size: 4rem;
         text-shadow: 0.5rem 0.25rem 1rem #3e3e3e;
@@ -43,14 +43,11 @@
         alt=""
       />
     </div>
-    <h1 class="title beijing">🇨🇳 Olympic Time:</h1>
-    <h2 class="time beijing">00:00 am</h2>
-    <p class="zone-info beijing"></p>
+    <h1 class="title paris">🇫🇷 Olympic Time:</h1>
+    <h2 class="time paris">00:00 am</h2>
+    <p class="zone-info paris"></p>
     <p class="schedule">
-      <a
-        href="https://olympics.com/beijing-2022/olympic-games/en/results/all-sports/olympic-schedule.htm"
-        >Event Schedule for 2022 Olympics in Beijing, China.</a
-      >
+      <a href="https://olympics.com/en/olympic-games/paris-2024">Event Schedule for 2024 Olympics in Paris, France.</a>
     </p>
     <br />
     <p class="repo-link">
@@ -58,20 +55,18 @@
       <a href="https://github.com/edm00se/olympic-time"
         >this page's source in its GitHub repository</a
       >
-      or
-      <a href="https://codesandbox.io/s/github/edm00se/olympic-time"
-        >on CodeSandbox</a
-      >.
+      or <a href="https://codesandbox.io/s/github/edm00se/olympic-time">on CodeSandbox</a>.
     </p>
 
     <script>
       // handles on DOM elements
-      const myTime = document.querySelector('.time.here');
-      const homeZoneTitle = document.querySelector('h1.title.home');
+      const myTime = document.querySelector(".time.here");
+      const homeZoneTitle = document.querySelector("h1.title.home");
       const detectedLocale = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const beijingTime = document.querySelector('.time.beijing');
-      const beijingZoneTitle = document.querySelector('h1.title.beijing');
-      const beijingZone = 'Asia/Shanghai'; // time zone major city
+      const parisTime = document.querySelector(".time.paris");
+      const parisZoneTitle = document.querySelector("h1.title.paris");
+      const parisZone = "Europe/Paris"; // time zone major city
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#timezone
 
       // takes in a Date and formats it
       function formatTime(dt) {
@@ -79,10 +74,10 @@
         return dt.toLocaleTimeString();
       }
 
-      // takes in a Date, returns string of Beijing time
-      function getBeijingTime(dt) {
-        // takes in current Date, finds Beijing time from it
-        return dt.toLocaleTimeString('en-US', { timeZone: beijingZone });
+      // takes in a Date, returns string of Paris time
+      function getParisTime(dt) {
+        // takes in current Date, finds Paris time from it
+        return dt.toLocaleTimeString("en-US", { timeZone: parisZone });
       }
 
       function loadTimes() {
@@ -90,16 +85,16 @@
         const now = new Date();
         // get the formatted text to show
         myTime.innerText = formatTime(now);
-        // get time in South Korea, with appropriate tz offset
-        beijingTime.innerText = getBeijingTime(now);
+        // get time in Paris, France, with appropriate tz offset
+        parisTime.innerText = getParisTime(now);
       }
 
       function init() {
         loadTimes();
         // info about home time
         homeZoneTitle.title = `Your browser's time zone was detected as ${detectedLocale}.`;
-        // info about Beijing time
-        beijingZoneTitle.title = `The time zone where the Olympics are going on is ${beijingZone}.`;
+        // info about Paris time
+        parisZoneTitle.title = `The time zone where the Olympics are going on is ${parisZone}.`;
         window.setInterval(loadTimes, 1000);
       }
 
